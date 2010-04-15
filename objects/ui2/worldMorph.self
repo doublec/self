@@ -1,6 +1,6 @@
  '$Revision: 30.30 $'
  '
-Copyright 1992-2006 Sun Microsystems, Inc. and Stanford University.
+Copyright 1992-2009 AUTHORS, Sun Microsystems, Inc. and Stanford University.
 See the LICENSE file for license information.
 '
 
@@ -273,6 +273,12 @@ When I run again, the step cycle adds me in to the world.
          'Category: World Morph State\x7fModuleInfo: Module: worldMorph InitialContents: InitializeToExpression: (dictionary copyRemoveAll)\x7fVisibility: private'
         
          savedMorphs <- dictionary copyRemoveAll.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'worldMorph' -> () From: ( | {
+         'Category: World Morph State\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot'
+        
+         scrollStart.
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'worldMorph' -> () From: ( | {
@@ -1675,6 +1681,17 @@ Make a notifier to be spawned in a new world.\x7fModuleInfo: Module: worldMorph 
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
+         'Category: event handling\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot\x7fVisibility: public'
+        
+         mouseMove: evt = ( |
+            | 
+            evt rightIsDown ifTrue: [
+              moveHand: evt sourceHand InWorldBy: (scrollStart - (evt cursorPoint)).
+            ].
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
          'Category: moving around\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot\x7fVisibility: public'
         
          moveHand: h InWorldBy: deltaPt = ( |
@@ -1863,7 +1880,7 @@ oldGlobalBounds. \x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot'
          parent* = bootstrap stub -> 'traits' -> 'morph' -> ().
         } | ) 
 
-bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
          'Category: window management\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot'
         
          platformSpecificNameFor: displayName = ( |
@@ -1872,6 +1889,7 @@ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( |
             displayName == 'quartz' ifTrue: [^ ''].
             displayName).
         } | ) 
+
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
          'Category: structure\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot\x7fVisibility: private'
         
@@ -2232,6 +2250,27 @@ on the default display.\x7fModuleInfo: Module: worldMorph InitialContents: Follo
                     ].
                 ] exit.
             ].
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
+         'Category: event handling\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot\x7fVisibility: public'
+        
+         rightMouseDown: evt = ( |
+            | 
+            rootMorphsAt: evt cursorPoint Do: [^ self].
+            evt sourceHand subscribeCursor: self.
+            scrollStart: evt cursorPoint.
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'worldMorph' -> () From: ( | {
+         'Category: event handling\x7fModuleInfo: Module: worldMorph InitialContents: FollowSlot\x7fVisibility: public'
+        
+         rightMouseUp: evt = ( |
+            | 
+            evt sourceHand unsubscribeCursor: self.
+            scrollStart: nil.
             self).
         } | ) 
 
