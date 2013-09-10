@@ -1,0 +1,14 @@
+platform_processor=i386
+TARGET_ARCH=I386_ARCH
+HOST_ARCH=I386_ARCH
+platform_kind=unix
+TARGET_OS_FAMILY=UNIX_FAMILY
+platform_name=Linux
+platform=linux
+TARGET_OS_VERSION=LINUX_VERSION
+gcc=1
+COMPILER=GCC_COMPILER
+platform_compiler=gcc
+
+CC=g++
+

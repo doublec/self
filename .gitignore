@@ -8,3 +8,4 @@
 *.xcworkspace
 build/
 objects/glue/test*
+.tup
