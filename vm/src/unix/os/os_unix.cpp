@@ -693,7 +693,7 @@ const char* OS::get_user_name() {
 void OS::convert_unix_filename(const char* src, char* dst) {
   if (strlen(src) >= MAXPATHLEN)
     fatal("path too long");
-  strcpy( dst, src);
+  realpath( src, dst);
 }
 
 
