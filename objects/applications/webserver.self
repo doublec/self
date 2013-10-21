@@ -471,19 +471,7 @@ SlotsToOmit: parent prototype.
             startOnPort: 8080).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (os_file deadCopy)\x7fVisibility: private'
-        
-         serverSocket <- os_file deadCopy.
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (dictionary copy)\x7fVisibility: private'
-        
-         servlets <- dictionary copy.
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          startOnPort: port = ( |
@@ -517,7 +505,7 @@ SlotsToOmit: parent prototype.
             self).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          stop = ( |
@@ -526,6 +514,18 @@ SlotsToOmit: parent prototype.
             serverSocket closeIfFail: [].
             continue: false.
             self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (os_file deadCopy)\x7fVisibility: private'
+        
+         serverSocket <- os_file deadCopy.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (dictionary copy)\x7fVisibility: private'
+        
+         servlets <- dictionary copy.
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'collection' -> () From: ( | {
