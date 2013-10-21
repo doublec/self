@@ -425,6 +425,12 @@ SlotsToOmit: parent prototype.
              s.
             | 
             servlets keys do: [|:k| 
+              (k = url) ifTrue: [ 
+                socket writeLine: 'HTTP/1.1 302 Moved Temporarily'.
+                socket writeLine: 'Location: /',url,'/'.
+                socket writeLine: ''.
+                ^ self
+              ].
               (k isPrefixOf: url) || (k = '') ifTrue: [
                 ^ (servlets at: k) handleUrl: (url copyFrom: k size UpTo: url size) Server: self Socket: socket]].
             handleError: socket Code: 404 Reason: 'Servlet Not Found').
