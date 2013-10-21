@@ -75,15 +75,36 @@ SlotsToOmit: directory fileInTimeString myComment postFileIn revision subpartNam
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (false)\x7fVisibility: private'
+        
+         continue <- bootstrap stub -> 'globals' -> 'false' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
+        
+         debug = bootstrap stub -> 'globals' -> 'true' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         about = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'about' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver about.
+         parent* = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'about' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
+        
+         about = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'about' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent about.
+'.
+            | ) .
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'about' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          help = '
@@ -105,51 +126,51 @@ When finished, webserver stop.
 '.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'about' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'about' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          shortName = 'A Self Webserver'.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'about' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'about' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          version = 1.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          deregisterServletAt: u = ( |
             | 
-            private removeServletAt: s).
+            removeServletAt: u).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
-         exampleServlets = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets.
+         exampleServlets = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         fileServlet = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets fileServlet.
+         fileServlet = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets fileServlet.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: InitializeToExpression: (\'~/Sites/\')'
         
          baseDirectory <- '~/Sites/'.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          mimeTypes <- bootstrap setObjectAnnotationOf: ( [|d|
@@ -161,7 +182,7 @@ When finished, webserver stop.
 	d at: ('ogv') Put: ('video/ogg').
 	d at: ('webm') Put: ('video/webm').
 ] value) From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets fileServlet mimeTypes.
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets fileServlet mimeTypes.
 
 CopyDowns:
 globals set. copy 
@@ -171,16 +192,16 @@ SlotsToOmit: parent prototype.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         parent* = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets fileServlet parent.
+         parent* = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets fileServlet parent.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          fileExtension: fn = ( |
@@ -190,7 +211,7 @@ SlotsToOmit: parent prototype.
                IfAbsent: [nil]).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          filenameFromUrl: u = ( |
@@ -201,7 +222,7 @@ SlotsToOmit: parent prototype.
             os_file expand: baseDirectory, fn).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          handleUrl: u = ( |
@@ -217,7 +238,7 @@ SlotsToOmit: parent prototype.
             r).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          handleUrl: u Server: webserver Socket: socket = ( |
@@ -239,7 +260,7 @@ SlotsToOmit: parent prototype.
             ]).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          isUnderBaseDirectory: fn = ( |
@@ -247,13 +268,13 @@ SlotsToOmit: parent prototype.
             (os_file expand: baseDirectory) isPrefixOf: fn).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          parent* = bootstrap stub -> 'traits' -> 'clonable' -> ().
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          statusCode: u = ( |
@@ -265,25 +286,25 @@ SlotsToOmit: parent prototype.
             ] False: [ 400 ]).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         lobbyBrowserServlet = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets lobbyBrowserServlet.
+         lobbyBrowserServlet = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets lobbyBrowserServlet.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         parent* = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver exampleServlets lobbyBrowserServlet parent.
+         parent* = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( |
+             {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets lobbyBrowserServlet parent.
 '.
             | ) .
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          appropriateSigilFor: slot = ( |
@@ -293,7 +314,7 @@ SlotsToOmit: parent prototype.
             ' = ').
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          getMirrorAtPath: p = ( |
@@ -304,7 +325,7 @@ SlotsToOmit: parent prototype.
             o).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          handleUrl: u = ( |
@@ -320,7 +341,7 @@ SlotsToOmit: parent prototype.
             htmlFor: o).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          handleUrl: u Server: webserver Socket: socket = ( |
@@ -330,7 +351,7 @@ SlotsToOmit: parent prototype.
             socket writeLine: handleUrl: u).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          htmlFor: o = ( |
@@ -352,7 +373,7 @@ SlotsToOmit: parent prototype.
             r).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          htmlForSlot: s = ( |
@@ -363,49 +384,14 @@ SlotsToOmit: parent prototype.
              s value safeName, '</li>').
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'lobbyBrowserServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          parent* = bootstrap stub -> 'traits' -> 'clonable' -> ().
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         isRunning = ( |
-            | 
-            private continue).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         parent* = bootstrap stub -> 'traits' -> 'oddball' -> ().
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         private = bootstrap setObjectAnnotationOf: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( |
-             {} = 'ModuleInfo: Creator: globals webserver private.
-'.
-            | ) .
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: InitializeToExpression: (false)'
-        
-         continue <- bootstrap stub -> 'globals' -> 'false' -> ().
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         debug = bootstrap stub -> 'globals' -> 'true' -> ().
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
         
          handleError: io Code: code Reason: reason = ( |
             | 
@@ -415,8 +401,8 @@ SlotsToOmit: parent prototype.
             io writeLine: '<body><p>',reason,'</p></body></html>').
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
         
          handleRequest: io = ( |
              url.
@@ -432,8 +418,8 @@ SlotsToOmit: parent prototype.
             self).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
         
          handleUrl: url Server: webserver Socket: socket = ( |
              s.
@@ -444,14 +430,22 @@ SlotsToOmit: parent prototype.
             handleError: socket Code: 404 Reason: 'Servlet Not Found').
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
-         parent* = bootstrap stub -> 'traits' -> 'oddball' -> ().
+         isRunning = ( |
+            | 
+            continue).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+        
+         parent* = bootstrap stub -> 'traits' -> 'clonable' -> ().
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          registerServlet: s At: urlStub = ( |
             | 
@@ -460,8 +454,8 @@ SlotsToOmit: parent prototype.
             self).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
         
          removeServletAt: u = ( |
             | 
@@ -469,27 +463,28 @@ SlotsToOmit: parent prototype.
             self).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: InitializeToExpression: (os_file deadCopy)'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
+        
+         start = ( |
+            | 
+            startOnPort: 8080).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (os_file deadCopy)\x7fVisibility: private'
         
          serverSocket <- os_file deadCopy.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: InitializeToExpression: (dictionary copy)'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (dictionary copy)\x7fVisibility: private'
         
          servlets <- dictionary copy.
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         start = ( |
-            | startOnPort: 8080).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          startOnPort: port = ( |
             | 
@@ -522,8 +517,8 @@ SlotsToOmit: parent prototype.
             self).
         } | ) 
 
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
         
          stop = ( |
             | 
@@ -531,37 +526,6 @@ SlotsToOmit: parent prototype.
             serverSocket closeIfFail: [].
             continue: false.
             self).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         registerServlet: s At: u = ( |
-            | 
-            private registerServlet: s At: u).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         start = ( |
-            | 
-            private start).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         startOnPort: port = ( |
-            | private startOnPort: port).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
-         stop = ( |
-            | 
-            private stop).
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'collection' -> () From: ( | {
