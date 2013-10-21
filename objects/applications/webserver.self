@@ -229,7 +229,7 @@ SlotsToOmit: parent prototype.
               contents: handleUrl: u.
               socket writeLine: 'HTTP/1.1 200 OK'.
               socket writeLine: 'Content-Length: ',contents size asString.
-              socket writeLine: 'Content-Type: ',(mimeTypes at: (fileExtension: fn) IfAbsent: ['application/octet-stream']).
+              socket writeLine: 'Content-Type: ',(mimeTypes at: (fileExtension: fn) uncapitalizeAll IfAbsent: ['application/octet-stream']).
               socket writeLine: ''.
               socket writeLine: contents
             ] False: [
@@ -485,7 +485,13 @@ SlotsToOmit: parent prototype.
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
          start = ( |
-             port = 8080.
+            | startOnPort: 8080).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'private' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: private'
+        
+         startOnPort: port = ( |
             | 
             continue: true.
             serverSocket closeIfFail: [].
@@ -541,6 +547,13 @@ SlotsToOmit: parent prototype.
          start = ( |
             | 
             private start).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+        
+         startOnPort: port = ( |
+            | private startOnPort: port).
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> () From: ( | {
