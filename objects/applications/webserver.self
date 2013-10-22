@@ -175,11 +175,25 @@ When finished, webserver stop.
         
          mimeTypes <- bootstrap setObjectAnnotationOf: ( [|d|
 	d: dictionary copyRemoveAll.
+	d at: ('css') Put: ('text/css').
+	d at: ('gif') Put: ('image/gif').
+	d at: ('htm') Put: ('text/html').
 	d at: ('html') Put: ('text/html').
-	d at: ('jpg') Put: ('image/jpg').
+	d at: ('ico') Put: ('image/x-icon').
+	d at: ('jpeg') Put: ('image/jpeg').
+	d at: ('jpg') Put: ('image/jpeg').
+	d at: ('js') Put: ('application/javascript').
+	d at: ('mov') Put: ('video/quicktime').
+	d at: ('mp3') Put: ('audio/mpeg').
 	d at: ('mp4') Put: ('video/mp4').
+	d at: ('mpeg') Put: ('video/mpeg').
+	d at: ('mpg') Put: ('video/mpeg').
 	d at: ('ogg') Put: ('video/ogg').
 	d at: ('ogv') Put: ('video/ogg').
+	d at: ('pdf') Put: ('application/pdf').
+	d at: ('png') Put: ('image/png').
+	d at: ('svg') Put: ('image/svg+xml').
+	d at: ('txt') Put: ('text/plain').
 	d at: ('webm') Put: ('video/webm').
 ] value) From: ( |
              {} = 'ModuleInfo: Creator: globals webserver parent exampleServlets fileServlet mimeTypes.
