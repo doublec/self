@@ -221,6 +221,21 @@ SlotsToOmit: parent prototype.
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
+         copyFile: in To: to = ( |
+             buf.
+            | 
+            [
+              buf: in readMin: 0 Max: 32768.
+              in atEOF not
+            ] whileTrue: [
+              to write: buf
+            ].
+            self).
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
+         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
+        
          fileExtension: fn = ( |
             | 
             fn findLast: [|:v. :k| v = '.']
@@ -242,34 +257,30 @@ SlotsToOmit: parent prototype.
  bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
          'ModuleInfo: Module: webserver InitialContents: FollowSlot'
         
-         handleUrl: u = ( |
-             f.
-             fn.
-             r.
-            | 
-            fn: filenameFromUrl: u.
-            (isUnderBaseDirectory: fn) ifFalse: [^ 'Not Found:', fn].
-            f: os_file deadCopy openForReading: fn IfFail: [^ 'Not Found:', fn].
-            r: f contents.
-            f close.
-            r).
-        } | ) 
-
- bootstrap addSlotsTo: bootstrap stub -> 'globals' -> 'webserver' -> 'parent' -> 'exampleServlets' -> 'fileServlet' -> 'parent' -> () From: ( | {
-         'ModuleInfo: Module: webserver InitialContents: FollowSlot'
-        
          handleUrl: u Server: webserver Socket: socket = ( |
              sc.
             | 
             sc: statusCode: u.
-            (sc = 200 ) ifTrue: [ | fn. contents |
+            (sc = 200 ) ifTrue: [ | fn. f |
               fn: filenameFromUrl: u.
-              contents: handleUrl: u.
+              (isUnderBaseDirectory: fn) ifFalse: [
+                socket writeLine: 'HTTP/1.1 400 Error'.
+                socket writeLine: ''.
+                socket writeLine: 'Error'.
+                ^self
+              ].  
+              f: os_file deadCopy openForReading: fn IfFail: [
+                socket writeLine: 'HTTP/1.1 400 Error'.
+                socket writeLine: ''.
+                socket writeLine: 'Error'.
+                ^self
+              ].
               socket writeLine: 'HTTP/1.1 200 OK'.
-              socket writeLine: 'Content-Length: ',contents size asString.
+              socket writeLine: 'Content-Length: ',f size asString.
               socket writeLine: 'Content-Type: ',(mimeTypes at: (fileExtension: fn) uncapitalizeAll IfAbsent: ['application/octet-stream']).
               socket writeLine: ''.
-              socket writeLine: contents
+              copyFile: f To: socket.
+              f close.
             ] False: [
               socket writeLine: 'HTTP/1.1 ',sc asString,' Error'.
               socket writeLine: ''.
