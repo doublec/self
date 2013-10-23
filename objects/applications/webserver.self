@@ -447,7 +447,9 @@ SlotsToOmit: parent prototype.
               (i matchesPattern: 'GET *') ifTrue: [
                 url: i copyFrom: 5 UpTo: i size - 10].
               i first asByte = 13] whileFalse: [].
-            handleUrl: url Server: self Socket: io.
+            url isNotNil ifTrue: [
+              handleUrl: url Server: self Socket: io
+            ].
             io close.
             self).
         } | ) 
