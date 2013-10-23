@@ -261,7 +261,7 @@ SlotsToOmit: parent prototype.
              sc.
             | 
             sc: statusCode: u.
-            (sc = 200 ) ifTrue: [ | fn. f |
+            (sc = 200 ) ifTrue: [ | fn. ext. f |
               fn: filenameFromUrl: u.
               (isUnderBaseDirectory: fn) ifFalse: [
                 socket writeLine: 'HTTP/1.1 400 Error'.
@@ -275,9 +275,15 @@ SlotsToOmit: parent prototype.
                 socket writeLine: 'Error'.
                 ^self
               ].
+              f isDirectory ifTrue: [
+                ^handleUrl: u,'/' Server: webserver Socket: socket.
+              ].
               socket writeLine: 'HTTP/1.1 200 OK'.
               socket writeLine: 'Content-Length: ',f size asString.
-              socket writeLine: 'Content-Type: ',(mimeTypes at: (fileExtension: fn) uncapitalizeAll IfAbsent: ['application/octet-stream']).
+              ext: fileExtension: fn.
+              ext isNotNil ifTrue: [
+                socket writeLine: 'Content-Type: ',(mimeTypes at: ext uncapitalizeAll IfAbsent: ['application/octet-stream']).
+              ].
               socket writeLine: ''.
               copyFile: f To: socket.
               f close.
@@ -560,6 +566,19 @@ SlotsToOmit: parent prototype.
          'Category: private\x7fModuleInfo: Module: webserver InitialContents: InitializeToExpression: (dictionary copy)\x7fVisibility: private'
         
          servlets <- dictionary copy.
+        } | ) 
+
+ bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'abstractFile' -> () From: ( | {
+         'Category: file status\x7fModuleInfo: Module: webserver InitialContents: FollowSlot\x7fVisibility: public'
+        
+         isDirectory = ( |
+             b <- bootstrap stub -> 'globals' -> 'false' -> ().
+             s.
+            | 
+            s: fstat.
+            b: s s_isdir.
+            s kill.
+            b).
         } | ) 
 
  bootstrap addSlotsTo: bootstrap stub -> 'traits' -> 'collection' -> () From: ( | {
