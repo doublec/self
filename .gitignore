@@ -10,3 +10,9 @@
 *.xcuserstate
 build/
 objects/glue/test*
+objs/
+incls/
+Dependencies.hh
+includeDB
+vm/Self
+vm/build_support/makeDeps
