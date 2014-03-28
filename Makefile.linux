@@ -12,15 +12,13 @@ platform_compiler=gcc
 
 CC=g++
 
-CFLAGS0=-DDEBUG -DGLUE_CHECKSUM=0 -DXLIB -DFAST_COMPILER -DSIC_COMPILER -DNATIVE_ARCH=i386 -DDYNLINK_SUPPORTED -DCOMPILER=GCC_COMPILER -DTARGET_OS_VERSION=LINUX_VERSION -DTARGET_OS_FAMILY=UNIX_FAMILY -DTARGET_ARCH=I386_ARCH -DHOST_ARCH=I386_ARCH -DGENERATE_DEBUGGING_AIDS=0 -DSPEND_TIME_FOR_DEBUGGING_BY_DEFAULT=0 -DTARGET_IS_OPTIMIZED=1 -DTARGET_IS_PROFILED=0 -DTARGET_IS_FOR_DEBUGGING=0 -m32 -fno-threadsafe-statics -fvisibility=default -fkeep-inline-functions -fno-exceptions -fno-stack-protector -Wabi -Wreorder -Wreturn-type -Wswitch -Wcomment -Wformat -Wpointer-arith -Woverloaded-virtual -Wno-write-strings -Wparentheses -Ivm/src/any/asm -Ivm/src/any/fast_compiler -Ivm/src/any/interpreter -Ivm/src/any/lookup -Ivm/src/any/memory -Ivm/src/any/objects -Ivm/src/any/os -Ivm/src/any/parser -Ivm/src/any/prims -Ivm/src/any/runtime -Ivm/src/any/sic -Ivm/src/any/zone -Ivm/src/i386/asm -Ivm/src/i386/fast_compiler -Ivm/src/i386/lookup -Ivm/src/i386/memory -Ivm/src/i386/prims -Ivm/src/i386/runtime -Ivm/src/i386/sic -Ivm/src/i386/zone -Ivm/src/unix/os -Ivm/src/unix/prims -Ivm/src/unix/runtime -Iobjects/glue -Iincls
+CFLAGS=-DDEBUG -DGLUE_CHECKSUM=0 -DXLIB -DFAST_COMPILER -DSIC_COMPILER -DNATIVE_ARCH=i386 -DDYNLINK_SUPPORTED -DCOMPILER=GCC_COMPILER -DTARGET_OS_VERSION=LINUX_VERSION -DTARGET_OS_FAMILY=UNIX_FAMILY -DTARGET_ARCH=I386_ARCH -DHOST_ARCH=I386_ARCH -DGENERATE_DEBUGGING_AIDS=0 -DSPEND_TIME_FOR_DEBUGGING_BY_DEFAULT=0 -DTARGET_IS_OPTIMIZED=1 -DTARGET_IS_PROFILED=0 -DTARGET_IS_FOR_DEBUGGING=0 -m32 -fno-threadsafe-statics -fvisibility=default -fkeep-inline-functions -fno-exceptions -fno-stack-protector -Wabi -Wreorder -Wreturn-type -Wswitch -Wcomment -Wformat -Wpointer-arith -Woverloaded-virtual -Wno-write-strings -Wparentheses -Ivm/src/any/asm -Ivm/src/any/fast_compiler -Ivm/src/any/interpreter -Ivm/src/any/lookup -Ivm/src/any/memory -Ivm/src/any/objects -Ivm/src/any/os -Ivm/src/any/parser -Ivm/src/any/prims -Ivm/src/any/runtime -Ivm/src/any/sic -Ivm/src/any/zone -Ivm/src/i386/asm -Ivm/src/i386/fast_compiler -Ivm/src/i386/lookup -Ivm/src/i386/memory -Ivm/src/i386/prims -Ivm/src/i386/runtime -Ivm/src/i386/sic -Ivm/src/i386/zone -Ivm/src/unix/os -Ivm/src/unix/prims -Ivm/src/unix/runtime -Iobjects/glue 
 
-
-CFLAGS=$(CFLAGS0) -include incls/_precompiled.hh -Winvalid-pch
 
 LINKFLAGS=-m32 -fno-threadsafe-statics -fvisibility=default -fkeep-inline-functions -fno-exceptions -fno-stack-protector -Wabi -Wreorder -Wreturn-type -Wswitch -Wcomment -Wformat -Wpointer-arith -Woverloaded-virtual -Wno-write-strings -Wparentheses
 
 VPATH = objects/glue
-VPATH += incls
+VPATH += objs
 VPATH += vm/src/unix/prims
 VPATH += vm/src/unix/runtime
 VPATH += vm/src/any/runtime
@@ -51,303 +49,11 @@ VPATH += vm/src/unix/prims
 VPATH += vm/src/unix/runtime
 
 
-objs/%.o: %.cpp incls/_precompiled.hh
+objs/%.o: %.cpp
 	g++ $(CFLAGS) -MMD -MP -o $@ -c $<
 
-objs/%.o: %.S  incls/_precompiled.hh
+objs/%.o: %.S
 	g++ $(CFLAGS) -o $@ -c $<
-
-## incls
-INCLS0= \
-  incls/_aCompiler_pd.hh.incl \
-  incls/_addrDesc_pd.hh.incl \
-  incls/_asm_pd.hh.incl \
-  incls/_asmDefs_pd.hh.incl \
-  incls/_asm_inline_pd.hh.incl \
-  incls/_cacheStub_pd.hh.incl \
-  incls/_cacheStub_inline_pd.hh.incl \
-  incls/_codeGen_pd.hh.incl \
-  incls/_config_pd.hh.incl \
-  incls/_conversion_pd.hh.incl \
-  incls/_countPattern_pd.hh.incl \
-  incls/_countStub_pd.hh.incl \
-  incls/_diDesc_pd.hh.incl \
-  incls/_disasm_pd.hh.incl \
-  incls/_fcompiler_pd.hh.incl \
-  incls/_fields_pd.hh.incl \
-  incls/_frame_pd.hh.incl \
-  incls/_framePieces_pd.hh.incl \
-  incls/_frame_format_pd.hh.incl \
-  incls/_frame_iterator_pd.hh.incl \
-  incls/_genHelper_pd.hh.incl \
-  incls/_include_glue_pd.hh.incl \
-  incls/_interruptedCtx_pd.hh.incl \
-  incls/_itimer_pd.hh.incl \
-  incls/_longRegString_pd.hh.incl \
-  incls/_machineCache_pd.hh.incl \
-  incls/_nmethod_pd.hh.incl \
-  incls/_basicNode_pd.hh.incl \
-  incls/_deadBlockNode_pd.hh.incl \
-  incls/_prologueNode_pd.hh.incl \
-  incls/_os_pd.hh.incl \
-  incls/_os_includes_pd.hh.incl \
-  incls/_prim_table_arch_pd.hh.incl \
-  incls/_prim_table_os_pd.hh.incl \
-  incls/_registerLocator_pd.hh.incl \
-  incls/_registerState_pd.hh.incl \
-  incls/_registerString_pd.hh.incl \
-  incls/_regs_pd.hh.incl \
-  incls/_runtime_pd.hh.incl \
-  incls/_search_pd.hh.incl \
-  incls/_sendDesc_pd.hh.incl \
-  incls/_sic_pd.hh.incl \
-  incls/_sig_pd.hh.incl \
-  incls/_signalBlocker_pd.hh.incl \
-  incls/_timer_pd.hh.incl \
-  incls/_trapdoors_pd.hh.incl \
-  incls/_unixPrims.cpp.incl \
-  incls/_unixPrims.glue.cpp.incl \
-  incls/_aCompiler.cpp.incl \
-  incls/_aCompiler_i386.cpp.incl \
-  incls/_aNode.cpp.incl \
-  incls/_abstract_interpreter.cpp.incl \
-  incls/_addrDesc.cpp.incl \
-  incls/_addrDesc_i386.cpp.incl \
-  incls/_ageTable.cpp.incl \
-  incls/_allocZone_i386.S.incl \
-  incls/_allocation.cpp.incl \
-  incls/_asm.cpp.incl \
-  incls/_asmPrims_i386.S.incl \
-  incls/_asm_i386.cpp.incl \
-  incls/_assignmentMap.cpp.incl \
-  incls/_asyncMalloc.cpp.incl \
-  incls/_basicBlock.cpp.incl \
-  incls/_bitVector.cpp.incl \
-  incls/_blist.cpp.incl \
-  incls/_blockMap.cpp.incl \
-  incls/_blockOop.cpp.incl \
-  incls/_branchSet.cpp.incl \
-  incls/_byteCodes.cpp.incl \
-  incls/_byteVectorMap.cpp.incl \
-  incls/_byteVectorOop.cpp.incl \
-  incls/_cacheStub.cpp.incl \
-  incls/_cacheStub_i386.cpp.incl \
-  incls/_callgraph.cpp.incl \
-  incls/_clist.cpp.incl \
-  incls/_codeGen.cpp.incl \
-  incls/_codeGen_i386.cpp.incl \
-  incls/_codeLikeSlotsMap.cpp.incl \
-  incls/_codeSlotsMap.cpp.incl \
-  incls/_codeTable.cpp.incl \
-  incls/_complexLookup.cpp.incl \
-  incls/_conversion.cpp.incl \
-  incls/_conversion_i386.cpp.incl \
-  incls/_countPattern.cpp.incl \
-  incls/_countPattern_i386.cpp.incl \
-  incls/_countStub.cpp.incl \
-  incls/_countStub_i386.cpp.incl \
-  incls/_deadBlockNode_i386.cpp.incl \
-  incls/_debug.cpp.incl \
-  incls/_debugPrintable.cpp.incl \
-  incls/_defUse.cpp.incl \
-  incls/_deps.cpp.incl \
-  incls/_diDesc.cpp.incl \
-  incls/_diDesc_i386.cpp.incl \
-  incls/_disasm.cpp.incl \
-  incls/_disasm_i386.cpp.incl \
-  incls/_dynLink.cpp.incl \
-  incls/_enum_i386.S.incl \
-  incls/_enumeration.cpp.incl \
-  incls/_errorCodes.cpp.incl \
-  incls/_errorCodes_unix.cpp.incl \
-  incls/_eventlog.cpp.incl \
-  incls/_exec.cpp.incl \
-  incls/_expr.cpp.incl \
-  incls/_fcompiler.cpp.incl \
-  incls/_fcompiler_i386.cpp.incl \
-  incls/_fctProxyMap.cpp.incl \
-  incls/_fctProxyOop.cpp.incl \
-  incls/_fields.cpp.incl \
-  incls/_fields_i386.cpp.incl \
-  incls/_files.cpp.incl \
-  incls/_floatMap.cpp.incl \
-  incls/_floatOop.cpp.incl \
-  incls/_foreignOop.cpp.incl \
-  incls/_fprofiler.cpp.incl \
-  incls/_frame.cpp.incl \
-  incls/_framePieces.cpp.incl \
-  incls/_framePieces_i386.cpp.incl \
-  incls/_frame_i386.cpp.incl \
-  incls/_frame_format.cpp.incl \
-  incls/_frame_format_i386.cpp.incl \
-  incls/_frame_iterator.cpp.incl \
-  incls/_frame_iterator_i386.cpp.incl \
-  incls/_fscope.cpp.incl \
-  incls/_genHelper.cpp.incl \
-  incls/_genHelper_i386.cpp.incl \
-  incls/_generation.cpp.incl \
-  incls/_glue.cpp.incl \
-  incls/_glueCheckSum.cpp.incl \
-  incls/_glueDefs.cpp.incl \
-  incls/_glueSupport.cpp.incl \
-  incls/_hprofiler.cpp.incl \
-  incls/_immediateMap.cpp.incl \
-  incls/_init.cpp.incl \
-  incls/_inlining.cpp.incl \
-  incls/_interpreter.cpp.incl \
-  incls/_interruptedCtx.cpp.incl \
-  incls/_interruptedCtx_i386.cpp.incl \
-  incls/_interruptedCtx_unix.cpp.incl \
-  incls/_itimer.cpp.incl \
-  incls/_itimer_unix.cpp.incl \
-  incls/_key.cpp.incl \
-  incls/_kinds.cpp.incl \
-  incls/_label.cpp.incl \
-  incls/_labelSet.cpp.incl \
-  incls/_list.cpp.incl \
-  incls/_longRegString.cpp.incl \
-  incls/_longRegString_i386.cpp.incl \
-  incls/_lprintf.cpp.incl \
-  incls/_machineCache.cpp.incl \
-  incls/_machineCache_unix.cpp.incl \
-  incls/_map.cpp.incl \
-  incls/_mapMap.cpp.incl \
-  incls/_mapOop.cpp.incl \
-  incls/_mapTable.cpp.incl \
-  incls/_mapVtbls.cpp.incl \
-  incls/_markMap.cpp.incl \
-  incls/_markOop.cpp.incl \
-  incls/_memOop.cpp.incl \
-  incls/_mirrorMap.cpp.incl \
-  incls/_mirrorOop.cpp.incl \
-  incls/_miscPrims.cpp.incl \
-  incls/_monitor.cpp.incl \
-  incls/_monitorHooks.cpp.incl \
-  incls/_monitorHooks_unix.cpp.incl \
-  incls/_monitorPieces.cpp.incl \
-  incls/_monitorPieces_unix.cpp.incl \
-  incls/_monitorWindow.cpp.incl \
-  incls/_nameDesc.cpp.incl \
-  incls/_ncode.cpp.incl \
-  incls/_nlrSupport.cpp.incl \
-  incls/_nmethod.cpp.incl \
-  incls/_nmethodScopes.cpp.incl \
-  incls/_nmethod_i386.cpp.incl \
-  incls/_nmln.cpp.incl \
-  incls/_node.cpp.incl \
-  incls/_nodeGen.cpp.incl \
-  incls/_node_i386.cpp.incl \
-  incls/_nprofiler.copygraph.cpp.incl \
-  incls/_nprofiler.cpp.incl \
-  incls/_oTable.cpp.incl \
-  incls/_objVectorMap.cpp.incl \
-  incls/_objVectorOop.cpp.incl \
-  incls/_oop.cpp.incl \
-  incls/_oopClosures.cpp.incl \
-  incls/_oopsOop.cpp.incl \
-  incls/_opc_i386.cpp.incl \
-  incls/_opcode.cpp.incl \
-  incls/_os.cpp.incl \
-  incls/_os_unix.cpp.incl \
-  incls/_parser.cpp.incl \
-  incls/_pcDesc.cpp.incl \
-  incls/_pinsn_i386.cpp.incl \
-  incls/_platformWindow.cpp.incl \
-  incls/_positionTable.cpp.incl \
-  incls/_preg.cpp.incl \
-  incls/_prim.cpp.incl \
-  incls/_print.cpp.incl \
-  incls/_process.cpp.incl \
-  incls/_processMap.cpp.incl \
-  incls/_processOop.cpp.incl \
-  incls/_profilerMap.cpp.incl \
-  incls/_profilerOop.cpp.incl \
-  incls/_proxyMap.cpp.incl \
-  incls/_proxyOop.cpp.incl \
-  incls/_quartzPrims.cpp.incl \
-  incls/_quartzWindow.cpp.incl \
-  incls/_rSet.cpp.incl \
-  incls/_recompile.cpp.incl \
-  incls/_regAlloc.cpp.incl \
-  incls/_registerLocator.cpp.incl \
-  incls/_registerLocator_i386.cpp.incl \
-  incls/_registerState.cpp.incl \
-  incls/_registerState_i386.cpp.incl \
-  incls/_registerString.cpp.incl \
-  incls/_registerString_i386.cpp.incl \
-  incls/_regs.cpp.incl \
-  incls/_regs_i386.cpp.incl \
-  incls/_require.cpp.incl \
-  incls/_rscope.cpp.incl \
-  incls/_runtime.cpp.incl \
-  incls/_runtime_i386.cpp.incl \
-  incls/_runtime_asm_gcc_i386.S.incl \
-  incls/_scanner.cpp.incl \
-  incls/_scopeDesc.cpp.incl \
-  incls/_scopeDescRecorder.cpp.incl \
-  incls/_search.cpp.incl \
-  incls/_search_i386.cpp.incl \
-  incls/_selfMonitor.cpp.incl \
-  incls/_send.cpp.incl \
-  incls/_sendDesc.cpp.incl \
-  incls/_sendDesc_i386.cpp.incl \
-  incls/_shell.cpp.incl \
-  incls/_sic.cpp.incl \
-  incls/_sicExpr.cpp.incl \
-  incls/_sicInline.cpp.incl \
-  incls/_sicPrimline.cpp.incl \
-  incls/_sicScope.cpp.incl \
-  incls/_sicSplit.cpp.incl \
-  incls/_sic_i386.cpp.incl \
-  incls/_sig.cpp.incl \
-  incls/_sig_unix.cpp.incl \
-  incls/_signalBlocker_unix.cpp.incl \
-  incls/_simpleLookup.cpp.incl \
-  incls/_slist.cpp.incl \
-  incls/_slot.cpp.incl \
-  incls/_slotDesc.cpp.incl \
-  incls/_slotIterator.cpp.incl \
-  incls/_slotList.cpp.incl \
-  incls/_slotRef.cpp.incl \
-  incls/_slotType.cpp.incl \
-  incls/_slotsMap.cpp.incl \
-  incls/_slotsMapDeps.cpp.incl \
-  incls/_slotsOop.cpp.incl \
-  incls/_smiMap.cpp.incl \
-  incls/_smiOop.cpp.incl \
-  incls/_space.cpp.incl \
-  incls/_spaceSize.cpp.incl \
-  incls/_stack.cpp.incl \
-  incls/_stacking_interpreter.cpp.incl \
-  incls/_str.cpp.incl \
-  incls/_stringMap.cpp.incl \
-  incls/_stringOop.cpp.incl \
-  incls/_stringTable.cpp.incl \
-  incls/_stringUtil.cpp.incl \
-  incls/_stubs_i386.cpp.incl \
-  incls/_table.cpp.incl \
-  incls/_target.cpp.incl \
-  incls/_timer.cpp.incl \
-  incls/_timer_unix.cpp.incl \
-  incls/_tracing.cpp.incl \
-  incls/_trapdoors.cpp.incl \
-  incls/_trapdoors_i386.cpp.incl \
-  incls/_uncommonBranch.cpp.incl \
-  incls/_uncommonBranch_i386.cpp.incl \
-  incls/_universe.cpp.incl \
-  incls/_universe.more.cpp.incl \
-  incls/_util.cpp.incl \
-  incls/_vframe.cpp.incl \
-  incls/_vframeMap.cpp.incl \
-  incls/_vframeOop.cpp.incl \
-  incls/_vframe_i386.cpp.incl \
-  incls/_vmStrings.cpp.incl \
-  incls/_xlibPrims.cpp.incl \
-  incls/_xlibWindow.cpp.incl \
-  incls/_zone.cpp.incl \
-  incls/_zoneHeap.cpp.incl \
-  incls/_precompiled.hh \
-  Dependencies.hh 
 
 OBJS = \
 	objs/vmDate.o \
@@ -689,28 +395,12 @@ OBJS = \
 
 all: vm/Self
 
-# Build support
-vm/build_support/makeDeps.o: vm/build_support/makeDeps.cpp
-	$(CC) $(CFLAGS0) -o $@ -c $< 
-
-vm/build_support/makeDeps: vm/build_support/makeDeps.o
-	$(CC) $(LINKFLAGS) $? -o $@ -rdynamic
-
-includeDB: vm/build_support/includeDB.in
-	sed -e 's/$${platform_kind}/$(platform_kind)/g' -e 's/$${platform_processor}/$(platform_processor)/g' -e 's/$${platform_compiler}/$(platform_compiler)/g' $< >$@
-
-$(INCLS0): includeDB vm/build_support/makeDeps
-	./vm/build_support/makeDeps -35 includeDB
-
-incls/_precompiled.hh.gch: $(INCLS0)
-	$(CC) $(CFLAGS0) -c $< -o $@
-
 ## vmDate
 DATE=$(shell date '+%a\ %d\ %h\ %y\ %H:%M:%S\')
 GIT=$(shell git describe --tags --dirty)
 PLATFORM="Linux i386"
 
-incls/vmDate.cpp: vm/build_support/vmDate.cpp.in 
+objs/vmDate.cpp: vm/build_support/vmDate.cpp.in 
 	sed -e s/@DATE@/$(DATE)/g -e s/@PLATFORM@/$(PLATFORM)/g -e s/@GIT_REVISION@/$(GIT)/g $< >$@
 
 vm/Self: $(OBJS)
@@ -719,13 +409,6 @@ vm/Self: $(OBJS)
 -include $(OBJS:.o=.d)
 
 clean:
-	-rm $(INCLS0)
-	-rm incls/_precompiled.hh.gch
-	-rm includeDB
-	-rm vm/build_support/makeDeps
-	-rm vm/build_support/makeDeps.o
-	-rm incls/vmDate.o
-	-rm incls/vmDate.cpp
-	-rm $(OBJS)
-	-rm $(OBJS:.o=.d)
+	-rm objs/vmDate.cpp
+	-rm objs/*.o objs/*.d
 	-rm vm/Self
